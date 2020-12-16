@@ -130,7 +130,7 @@ for group=1
                 h2(c) = plot(timevect(idx_peak),line_offset+0*timevect(idx_peak),'-x','Color',co(c,:),'LineWidth',2,'MarkerSize',10);
                 drawnow
             end
-            leglabs{linenr} = sprintf('%s %s',expsize,targetlabels{t});
+            leglabs{linenr} = sprintf('%s %s',expsize,strrep(targetlabels{t},'image','object'));
         end
     end
 end

@@ -80,7 +80,7 @@ for t=1:2
     leg.Orientation = 'horizontal';
     a.YLim=[-.019 .049];
     xlabel('time (ms)')
-    ylabel({'decoding accuracy','relevant - irrelevant'})
+    ylabel({[strrep(targetlabels{t},'image','object') ' decoding accuracy'],'relevant - irrelevant'})
     tx = title(sprintf('%s     Effect of task on %s decoding',char('A'+t-1),conditionlabels{t}),...
         'HorizontalAlignment','Left','Position',[-200 max(a.YLim) 0],'FontSize',16);
     

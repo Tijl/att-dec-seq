@@ -29,16 +29,17 @@ end
 
 % second row: object stream:
 aw=70;
-bottom2 = 30;
+bottom2 = 20;
+bottomsep = 25;
 margin=20;
 for j = 1:4
-    a=axes('Units','Pixels','Position',[50 bottom2+(aw+margin)*(j-1) aw aw],'Box','on');
+    a=axes('Units','Pixels','Position',[50 bottomsep*(j>2)+bottom2+(aw+margin)*(j-1) aw aw],'Box','on');
     a.XTick=[];a.YTick=[];
     t = {'letters','objects','letters','objects'};    
     text(0,0,{'respond to',t{j}},'HorizontalAlignment','center','VerticalAlignment','middle')
     axis([-1 1 -1 1])
     
-    a=axes('Units','Pixels','Position',[50+aw*(8) bottom2+(aw+margin)*(j-1) aw aw],'Box','on');
+    a=axes('Units','Pixels','Position',[50+aw*(8) bottomsep*(j>2)+bottom2+(aw+margin)*(j-1) aw aw],'Box','on');
     a.XTick=[];a.YTick=[];   
     text(0,0,'- - -','HorizontalAlignment','center','VerticalAlignment','middle')
     axis([-1 1 -1 1])
@@ -52,7 +53,7 @@ for j=1:4
     letterstimuli = 'ABCDEFGJKLQRTUVY';
 
     for i=1:length(stims)
-        a=axes('Units','Pixels','Position',[50+aw*i bottom2+(aw+margin)*(j-1) aw aw],'Box','on','YDir','reverse');
+        a=axes('Units','Pixels','Position',[50+aw*i bottomsep*(j>2)+bottom2+(aw+margin)*(j-1) aw aw],'Box','on','YDir','reverse');
         
         ss = [1 2 57 2 63 2 53];
         fn = sprintf('screenshots_exp%i/screen_%05i.png',1+(j<3),ss(i));
@@ -96,12 +97,14 @@ at=[ annotation('textbox','String','animals','Units','pixels','Position',[55+5*a
 % 	 annotation('arrow','Units','pixels','Position',[50+aw*5.5 bottom-40 0 40]),...
 % ];set(ar,'Color','k','LineWidth',10,'HeadWidth',40,'HeadLength',20,'HeadStyle','plain');
 at=[ annotation('textbox','String','A','Units','pixels','Position',[10 bottom+5*aw1-33 0 0]),...
-     annotation('textbox','String','B','Units','pixels','Position',[10 bottom2+3*(aw+margin)+40 0 0]),...
-	 annotation('textbox','String','C','Units','pixels','Position',[10 bottom2+2*(aw+margin)+40 0 0]),...
+     annotation('textbox','String','B','Units','pixels','Position',[10 bottomsep+bottom2+3*(aw+margin)+40 0 0]),...
+	 annotation('textbox','String','C','Units','pixels','Position',[10 bottomsep+bottom2+2*(aw+margin)+40 0 0]),...
 	 annotation('textbox','String','D','Units','pixels','Position',[10 bottom2+1*(aw+margin)+40 0 0]),...
 	 annotation('textbox','String','E','Units','pixels','Position',[10 bottom2+0*(aw+margin)+40 0 0]),...
 ];set(at,'FontSize',30,'VerticalAlignment','bottom');
-
+annotation('textbox','String','Experiment 1','Units','pixels','Position',[50 bottomsep+bottom2+3*(aw+margin)+aw 100 0],'FontSize',15,'VerticalAlignment','bottom','LineStyle','none')
+annotation('textbox','String','Experiment 2','Units','pixels','Position',[50 bottom2+(aw+margin)+aw 100 0],'FontSize',15,'VerticalAlignment','bottom','LineStyle','none')
+    
 %% save
 fn = 'figures/figure_design';
 tn = tempname;

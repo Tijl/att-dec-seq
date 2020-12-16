@@ -96,7 +96,7 @@ for group=1:2
             a.TickDir='out';a.TickLength=[.005 0];
             leg=legend(h,leglabs,'Location','NE');
             leg.Box='off';leg.Orientation='Vertical';
-            ylabel('Decoding accuracy')
+            ylabel([strrep(targetlabels{t},'image','object'),' decoding accuracy'])
             a.FontSize=14;leg.FontSize=14;
             title(sprintf('%s    Experiment %i - Decoding %s',char('A'+2*(t-1)+exp-1),exp,strrep(targetlabels{t},'image','object')),'Units','Normalized','Position',[-.065,1.05,1],'FontSize',16,'HorizontalAlignment','left')
 
@@ -223,6 +223,6 @@ for group=1:2
     tn = tempname;
     print(gcf,'-dpng','-r500',tn)
     im=imread([tn '.png']);
-    [i,j]=find(mean(im,3)<255);margin=2;
+    [i,j]=find(mean(im,3)<255);margin=1;
     imwrite(im(min(i-margin):max(i+margin),min(j-margin):max(j+margin),:),[fn '.png'],'png');
 end
